@@ -51,6 +51,7 @@ export default {
     value: {
       require: true,
     },
+    // 没用
     obj: {
       type: Object,
       default() {

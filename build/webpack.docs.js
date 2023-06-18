@@ -15,7 +15,11 @@ module.exports = {
     // 引入模块时不带扩展
     extensions: ['.js', '.vue', '.json'],
     // 创建 import 或 require 的别名，来确保模块引入变得更简单
-    alias: config.alias,
+    alias: {
+      ...config.alias,
+      // 解决 element-ui 表格无法渲染问题
+      vue: 'vue/dist/vue.js',
+    },
     // 解析模块时应该搜索的目录
     modules: ['node_modules'],
   },

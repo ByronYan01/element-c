@@ -1,5 +1,6 @@
 const { compileTemplate } = require('@vue/component-compiler-utils');
 const compiler = require('vue-template-compiler');
+const os = require('os');
 
 function stripScript(content) {
   const result = content.match(/<(script)>([\s\S]+)<\/\1>/);
@@ -27,8 +28,21 @@ function pad(source) {
     .join('\n');
 }
 
+function getPascalByPackageName (name = '') {
+  return name
+    // 将非字母转为 --
+    .replace(/[^a-zA-Z]/g, '--')
+    // 将所有重复的 - 转为单个
+    .replace(/-+/g, '-')
+    // 将 -字母 转为 大写字母
+    .replace(/-([a-zA-Z]{1})/g, (s, s1) => s1.toUpperCase())
+    // 将首字母转为大写
+    .replace(/^([a-zA-Z]{1})/, (s, s1) => s1.toUpperCase())
+}
+
 function genInlineComponentText(template, script) {
   // https://github.com/vuejs/vue-loader/blob/423b8341ab368c2117931e909e2da9af74503635/lib/loaders/templateLoader.js#L46
+  const importPair = {}
   const finalOptions = {
     source: `<div>${template}</div>`,
     filename: 'inline-component', // TODO：这里有待调整
@@ -56,7 +70,25 @@ function genInlineComponentText(template, script) {
   // todo: 这里采用了硬编码有待改进
   script = script.trim();
   if (script) {
-    script = script.replace(/export\s+default/, 'const democomponentExport =');
+    // script = script.replace(/export\s+default/, 'const democomponentExport =');
+    // 兼容 md 中 import 不生效问题
+    script = script
+      .replace(/export\s+default/, 'const democomponentExport =')
+      .replace(/import\s+(.*)\s+from\s+['"]{1}(.*)['"]{1}/g, (s, s1, s2) => {
+        const name = getPascalByPackageName(s2)
+        importPair[name] = s2
+        if (/^\s*{.*}\s*$/.test(s1)) {
+          return `const ${s1} = ${name}`
+        }
+        const namelist = s1.split(',')
+        return namelist.map(n => {
+          if (/^\s*\*\s+as\s+\S+\s*$/.test(n)) {
+            return `const ${n.split(' as ')[1]} = ${name}`
+          } else {
+            return `const ${n} = ${name}.default ? ${name}.default : ${name}`
+          }
+        }).join(os.EOL)
+      })
   } else {
     script = 'const democomponentExport = {}';
   }
@@ -69,7 +101,7 @@ function genInlineComponentText(template, script) {
       ...democomponentExport
     }
   })()`;
-  return demoComponentContent;
+  return [demoComponentContent, importPair];
 }
 
 module.exports = {

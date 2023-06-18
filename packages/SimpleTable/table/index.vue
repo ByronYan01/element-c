@@ -6,20 +6,12 @@
       <template v-for="(item, index) in transformColumns">
         <!-- column 插槽 -->
         <template v-if="item.isSlot">
-          <slot :name="item.prop" :item="item" :index="index"></slot>
+          <slot v-if="!item.isHidden" :name="item.prop" :item="item" :index="index"></slot>
         </template>
         <!-- 
-          提取失败，由于插槽透传问题 
-          收集所有插槽名，再次暴露，并坐在 colum内
+          收集所有插槽名，再次暴露，并坐在 colum 组件内
         -->
-        <column v-else :key="item.prop" :column="item">
-          <!-- 
-            逐步传递：才能将使用 table 组件传递来的插槽作用在 column 组件内的插槽位置上
-            不逐步传递：column 插槽位置默认值生效
-          -->
-          <!-- <template slot="address" slot-scope="scope">
-            <slot name="address" v-bind="scope"></slot>
-          </template> -->
+        <column v-else-if="!item.isHidden" :key="item.prop" :column="item">
           <template v-for="slotItem in slotList" :slot="slotItem" slot-scope="scope">
             <slot :name="slotItem" v-bind="scope"></slot>
           </template>
@@ -114,10 +106,6 @@ export default {
         }
       })
     },
-  },
-  mounted() {
-    console.log('this=====', this.$scopedSlots)
-    console.log('this.slotList=====', this.slotList)
   },
   updated() {
     this.$nextTick(() => {
