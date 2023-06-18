@@ -1,0 +1,45 @@
+<!-- 标题 -->
+<h2 id="button-an-niu">
+  <a class="header-anchor" href="#button-an-niu">¶</a>
+  Button 按钮
+</h2>
+<!-- 标题描述 -->
+<p>常用的操作按钮。</p>
+<!-- 使用代码运行展示组件 -->
+<demo-block>
+  <!-- 容器描述插槽内容 -->
+  <div>
+    <p>使用<code>type</code>、<code>plain</code>、<code>round</code>和<code>circle</code>属性来定义 Button 的样式。</p>
+  </div>
+  <!-- 代码片段：会在 html 转 vue 过程种，将其转换为 vue 局部组件进行运行 -->
+  <!--element-demo: 
+    <template>
+      <el-button type="primary">主要按钮</el-button>
+    </template>
+
+    <script>
+      export default {
+        data() {
+          return {}
+        },
+      }
+    </script>
+  :element-demo-->
+  <!-- 组件代码插槽内容 -->
+  <template slot="highlight">
+    <pre v-pre>
+      <code class="html">&lt;template&gt;
+        &lt;el-button type=&quot;primary&quot;&gt;主要按钮&lt;/el-button&gt;
+      &lt;/template&gt;
+
+      &lt;script&gt;
+        export default {
+          data() {
+            return {}
+          },
+        }
+      &lt;/script&gt;
+      </code>
+    </pre>
+  </template>
+</demo-block>
