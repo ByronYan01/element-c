@@ -4,6 +4,8 @@ const {
   genInlineComponentText
 } = require('./util');
 const md = require('./config');
+const os = require('os');
+// const fs = require('fs');
 
 module.exports = function(source) {
   // md 转化 html
@@ -14,6 +16,7 @@ module.exports = function(source) {
   const startTagLen = startTag.length;
   const endTag = ':element-demo-->';
   const endTagLen = endTag.length;
+  const importPair = {}
 
   let componenetsString = '';
   let id = 0; // demo 的 id
@@ -33,7 +36,8 @@ module.exports = function(source) {
     // 提取 script 标签内部内容
     const script = stripScript(commentContent);
     // 组件转换为自执行函数,内容返回含有 render 函数的对象
-    let demoComponentContent = genInlineComponentText(html, script);
+    let [demoComponentContent, tepimportPair] = genInlineComponentText(html, script);
+    Object.assign(importPair, tepimportPair)
     const demoComponentName = `element-demo${id}`;
     // 增加组件运行插槽并使用局部组件名
     output.push(`<template slot="source"><${demoComponentName} /></template>`);
@@ -52,6 +56,12 @@ module.exports = function(source) {
   if (componenetsString) {
     // 未用自定义容器
     pageScript = `<script>
+      ${
+        Object
+          .keys(importPair)
+          .map(key => `import * as ${key} from '${importPair[key]}';`)
+          .join(os.EOL)
+      }
       export default {
         name: 'component-doc',
         components: {
@@ -66,7 +76,7 @@ module.exports = function(source) {
   }
   // 将占位注释内容后的字符串放入内容数组中
   output.push(content.slice(start));
-  return `
+  const aa = `
     <template>
       <section class="content element-doc">
         ${output.join('')}
@@ -74,4 +84,9 @@ module.exports = function(source) {
     </template>
     ${pageScript}
   `;
+
+  // fs.writeFile('./tableCheck.vue', aa, {}, ()=>{
+  //   console.log('file write sucess');
+  // })
+  return aa
 };
