@@ -2,7 +2,7 @@
   <section class="content element-doc">
     <h2 id="biao-ge-xing-xuan-zhong"><a class="header-anchor" href="#biao-ge-xing-xuan-zhong">¶</a> 表格行选中</h2>
     <demo-block>
-      <div><p>用户勾选,只能手动取消,其他操作不影响;支持自动勾选</p></div>
+      <div><p>11111用户勾选,只能手动取消,其他操作不影响;支持自动勾选</p></div>
       <template slot="source"><element-demo0 /></template>
       <template slot="highlight">
         <pre v-pre><code class="html">&lt;template&gt;
