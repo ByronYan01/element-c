@@ -23,11 +23,11 @@ export default {
       default() {
         return {
           tag: 'el-input',
-          __vModel__: 'value',
-          __slot__: {
-            prepend: '11',
-            append: '99',
-          },
+          // __vModel__: 'value',
+          // __slot__: {
+          //   prepend: '11',
+          //   append: '99',
+          // },
           __attrs__: {
             placeholder: '请输入手机号',
             style: {

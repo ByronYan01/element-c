@@ -2,7 +2,7 @@
 
 table 组件。
 
-:::demo table 的基础用法。
+:::demo table 用法。
 
 ```html
 <template>
@@ -25,7 +25,6 @@ table 组件。
       <el-tag>{{ row.address }}</el-tag>
     </template> -->
     </simple-table>
-    <br />
   </div>
 </template>
 
@@ -133,38 +132,35 @@ table 组件。
 
 ### Table Attributes
 
+| 参数          | 说明                                                                                                | 类型    | 可选值 | 默认值 |
+| ------------- | --------------------------------------------------------------------------------------------------- | ------- | ------ | ------ |
+| data          | 表格显示的数据                                                                                      | Array   | -      | -      |
+| columnsConfig | el-table-column 的数据全局描述                                                                      | Array   | -      | -      |
+| columns       | el-table-column 的数据描述（默认会与 columnsConfig 合并，优先级大于 columnsConfig），详细参数见下面 | Array   | -      | -      |
+| is-show-page  | el-pagination 是否使用                                                                              | Boolean | -      | true   |
+| page-attrs    | el-pagination attributes 对象                                                                       | Object  | -      | {}     |
+| page-listener | el-pagination events 对象                                                                           | Object  | -      | {}     |
+| 其他参数      | el-table attributes 对 象                                                                           | Object  | -      | {}     |
+
+### columns Attributes
+
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
-| --- | --- | --- | --- | --- | --- |
-| data | 显示的数据 | array | — | — |
-| height | Table 的高度，默认为自动高度。如果 height 为 number 类型，单位 px；如果 height 为 string 类型，则这个高度会设置为 Table 的 style.height 的值，Table 的高度会受控于外部样式。 | string/number | — | — |
-| max-height | Table 的最大高度。合法的值为数字或者单位为 px 的高度。 | string/number | — | — |
-| stripe | 是否为斑马纹 table | boolean | — | false |
-| border | 是否带有纵向边框 | boolean | — | false |
-| size | Table 的尺寸 | string | medium / small / mini | — |
-| fit | 列的宽度是否自撑开 | boolean | — | true |
-| show-header | 是否显示表头 | boolean | — | true |
-| highlight-current-row | 是否要高亮当前行 | boolean | — | false |
-| current-row-key | 当前行的 key，只写属性 | String,Number | — | — |
-| row-class-name | 行的 className 的回调方法，也可以使用字符串为所有行设置一个固定的 className。 | Function({row, rowIndex})/String | — | — |
-| row-style | 行的 style 的回调方法，也可以使用一个固定的 Object 为所有行设置一样的 Style。 | Function({row, rowIndex})/Object | — | — |
-| cell-class-name | 单元格的 className 的回调方法，也可以使用字符串为所有单元格设置一个固定的 className。 | Function({row, column, rowIndex, columnIndex})/String | — | — |
-| cell-style | 单元格的 style 的回调方法，也可以使用一个固定的 Object 为所有单元格设置一样的 Style。 | Function({row, column, rowIndex, columnIndex})/Object | — | — |
-| header-row-class-name | 表头行的 className 的回调方法，也可以使用字符串为所有表头行设置一个固定的 className。 | Function({row, rowIndex})/String | — | — |
-| header-row-style | 表头行的 style 的回调方法，也可以使用一个固定的 Object 为所有表头行设置一样的 Style。 | Function({row, rowIndex})/Object | — | — |
-| header-cell-class-name | 表头单元格的 className 的回调方法，也可以使用字符串为所有表头单元格设置一个固定的 className。 | Function({row, column, rowIndex, columnIndex})/String | — | — |
-| header-cell-style | 表头单元格的 style 的回调方法，也可以使用一个固定的 Object 为所有表头单元格设置一样的 Style。 | Function({row, column, rowIndex, columnIndex})/Object | — | — |
-| row-key | 行数据的 Key，用来优化 Table 的渲染；在使用 reserve-selection 功能与显示树形数据时，该属性是必填的。类型为 String 时，支持多层访问：`user.info.id`，但不支持 `user.info[0].id`，此种情况请使用 `Function`。 | Function(row)/String | — | — |
-| empty-text | 空数据时显示的文本内容，也可以通过 `slot="empty"` 设置 | String | — | 暂无数据 |
-| default-expand-all | 是否默认展开所有行，当 Table 包含展开行存在或者为树形表格时有效 | Boolean | — | false |
-| expand-row-keys | 可以通过该属性设置 Table 目前的展开行，需要设置 row-key 属性才能使用，该属性为展开行的 keys 数组。 | Array | — |  |
-| default-sort | 默认的排序列的 prop 和顺序。它的`prop`属性指定默认的排序的列，`order`指定默认排序的顺序 | Object | `order`: ascending, descending | 如果只指定了`prop`, 没有指定`order`, 则默认顺序是 ascending |
-| tooltip-effect | tooltip `effect` 属性 | String | dark/light |  | dark |
-| show-summary | 是否在表尾显示合计行 | Boolean | — | false |
-| sum-text | 合计行第一列的文本 | String | — | 合计 |
-| summary-method | 自定义的合计计算方法 | Function({ columns, data }) | — | — |
-| span-method | 合并行或列的计算方法 | Function({ row, column, rowIndex, columnIndex }) | — | — |
-| select-on-indeterminate | 在多选表格中，当仅有部分行被选中时，点击表头的多选框时的行为。若为 true，则选中所有行；若为 false，则取消选择所有行 | Boolean | — | true |
-| indent | 展示树形数据时，树节点的缩进 | Number | — | 16 |
-| lazy | 是否懒加载子节点数据 | Boolean | — | — |
-| load | 加载子节点数据的函数，lazy 为 true 时生效，函数第二个参数包含了节点的层级信息 | Function(row, treeNode, resolve) | — | — |
-| tree-props | 渲染嵌套数据的配置选项 | Object | — | { hasChildren: 'hasChildren', children: 'children' } |
+| --- | --- | --- | --- | --- |
+| is-hidden | 当前列是否显示 | Boolean | -- | false |
+| prop | 列唯一 key，也用于插槽 name | String | - | - |
+| attrs | el-table-column attributes 对象 | Object | - | - |
+| is-slot | 是否渲染为插槽为，默认渲染出 ${prop}、\`${prop}Header` 名称的插槽位置来承接列内容、列头内容 | String | - | 默认列内容为 scope.row[column.attrs.prop]，列头内容为 column.attrs.label |
+| render | 列内容渲染函数，支持 jsx 语法 | Function | - | - |
+
+### Table Events
+
+| 事件名   | 说明                 | 参数   |
+| -------- | -------------------- | ------ |
+| 其他事件 | el-table events 对象 | Object |
+
+### Table Slot
+
+| 插槽名       | 说明                                                                       |
+| ------------ | -------------------------------------------------------------------------- |
+| frontColumn  | 表格内渲染 columns 对应表格列前面的区域, 参数为 { columnsConfig, $index }  |
+| behindColumn | 表格内渲染 columns 对应表格列后面的区域 , 参数为 { columnsConfig, $index } |

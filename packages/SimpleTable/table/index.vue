@@ -2,7 +2,7 @@
   <div class="simple-table">
     <el-table ref="simple-table" border v-bind="$attrs" v-on="$listeners">
       <!-- 用于单选、多选、序号 -->
-      <slot name="frontColumn"></slot>
+      <slot name="frontColumn" :columnsConfig="columnsConfig"></slot>
       <template v-for="(item, index) in transformColumns">
         <!-- column 插槽 -->
         <template v-if="item.isSlot">
@@ -17,7 +17,7 @@
           </template>
         </column>
       </template>
-      <slot name="behindColumn"></slot>
+      <slot name="behindColumn" :columnsConfig="columnsConfig"></slot>
     </el-table>
     <el-pagination
       v-if="isShowPage"

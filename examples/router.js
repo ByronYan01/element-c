@@ -15,6 +15,11 @@ const routes = [
     component: (resolve) => require(['./docs/table.md'], resolve),
   },
   {
+    path: '/render',
+    name: 'render',
+    component: (resolve) => require(['./docs/render.md'], resolve),
+  },
+  {
     path: '/example',
     name: 'example',
     component: (resolve) => require(['./docs/example.md'], resolve),

@@ -1,10 +1,9 @@
-import Loading from '../packages/loading/index'
 import SimpleRender from '../packages/SimpleRender'
 import SimpleTable from '../packages/SimpleTable'
 import SimpleTableForm from '../packages/SimpleTableForm'
 
 // 导入组件库所有组件
-const components = [Loading, SimpleTable, SimpleRender, SimpleTableForm]
+const components = [SimpleTable, SimpleRender, SimpleTableForm]
 
 // 定义组件库组件注册安装的install方法
 // 如果使用 use 注册插件，则所有的组件都将被注册
@@ -27,7 +26,6 @@ export default {
   // 导出的对象必须具有 install，才能被 Vue.use() 方法安装
   install,
   // 具体的组件列表
-  Loading,
   SimpleTable,
   SimpleRender,
   SimpleTableForm,
