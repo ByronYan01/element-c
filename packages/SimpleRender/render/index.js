@@ -30,9 +30,9 @@ export default {
           // },
           __attrs__: {
             placeholder: '请输入手机号',
-            style: {
-              width: '300px',
-            },
+            // style: {
+            //   width: '300px',
+            // },
             clearable: true,
           },
           on: {
