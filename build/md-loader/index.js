@@ -1,5 +1,6 @@
 const {
   stripScript,
+  stripStyle,
   stripTemplate,
   genInlineComponentText
 } = require('./util');
@@ -21,6 +22,7 @@ module.exports = function(source) {
   let componenetsString = '';
   let id = 0; // demo 的 id
   let output = []; // 输出的内容
+  let styleArr = []; // 样式输出内容
   let start = 0; // 字符串开始位置
 
   let commentStart = content.indexOf(startTag);
@@ -35,12 +37,14 @@ module.exports = function(source) {
     const html = stripTemplate(commentContent);
     // 提取 script 标签内部内容
     const script = stripScript(commentContent);
+    const style = stripStyle(commentContent);
     // 组件转换为自执行函数,内容返回含有 render 函数的对象
     let [demoComponentContent, tepimportPair] = genInlineComponentText(html, script);
     Object.assign(importPair, tepimportPair)
     const demoComponentName = `element-demo${id}`;
     // 增加组件运行插槽并使用局部组件名
     output.push(`<template slot="source"><${demoComponentName} /></template>`);
+    styleArr.push(style);
     // 定义局部组件声明
     componenetsString += `${JSON.stringify(demoComponentName)}: ${demoComponentContent},`;
 
@@ -74,6 +78,13 @@ module.exports = function(source) {
     start = content.indexOf('</script>') + '</script>'.length;
     pageScript = content.slice(0, start);
   }
+  // 合并 style 内容
+  let styleString = '';
+  if(styleArr && styleArr.length > 0) {
+    styleString = `<style>${styleArr.join('')}</style>`
+  } else {
+    styleString = `<style></style>`
+  }
   // 将占位注释内容后的字符串放入内容数组中
   output.push(content.slice(start));
   const aa = `
@@ -83,9 +94,10 @@ module.exports = function(source) {
       </section>
     </template>
     ${pageScript}
+    ${styleString}
   `;
 
-  // fs.writeFile('./tableCheck.vue', aa, {}, ()=>{
+  // fs.writeFile(`./${Math.random()*100}.vue`, aa, {}, ()=>{
   //   console.log('file write sucess');
   // })
   return aa

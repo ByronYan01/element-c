@@ -12,9 +12,9 @@ export default {
         },
         __attrs__: {
           placeholder: '请输入手机号',
-          style: {
-            width: '300px',
-          },
+          // style: {
+          //   width: '300px',
+          // },
           clearable: true,
         },
         on: {
@@ -31,9 +31,9 @@ export default {
       configSelect: {
         tag: 'el-select',
         __slot__: {
-          prefix: () => {
-            return <i class={('el-input__icon', 'el-icon-search')}></i>
-          },
+          // prefix: () => {
+          //   return <i class={('el-input__icon', 'el-icon-search')}></i>
+          // },
           options: [
             { label: '测试1', value: '1', disabled: false },
             { label: '测试2', value: '2', disabled: false },
@@ -43,9 +43,9 @@ export default {
         __attrs__: {
           filterable: true,
           placeholder: '请输入手机号',
-          style: {
-            width: '300px',
-          },
+          // style: {
+          //   width: '300px',
+          // },
           clearable: true,
         },
         on: {

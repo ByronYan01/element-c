@@ -230,7 +230,6 @@ export default {
 
     scrollHandler() {
       const { top, bottom, left } = this.$refs.meta.getBoundingClientRect()
-      console.log('this.$refs.meta.getBoundingClientRect()===', top, bottom)
       // 满足条件开启 fixed 布局
       this.fixedControl = bottom > document.documentElement.clientHeight && top + 44 <= document.documentElement.clientHeight
       // 设置 left = meta.positon.left、bottom = 0

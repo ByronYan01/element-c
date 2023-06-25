@@ -8,10 +8,14 @@ render 组件。
 <template>
   <div>
     <simple-render v-model="content" class="comp-render"></simple-render>
-    <!-- <simple-render v-model="content" class="comp-render" :config="configInput"></simple-render> -->
-    <!-- <simple-render v-model="content" class="comp-render" :config="configSelect"></simple-render> -->
-    <!-- <simple-render v-model="content" class="comp-render" :config="configButton"></simple-render> -->
-    <!-- <simple-render v-model="content" class="comp-render" :config="configDate"></simple-render> -->
+    <br />
+    <simple-render class="comp-render" :config="configInput"></simple-render>
+    <br />
+    <simple-render class="comp-render" :config="configSelect"></simple-render>
+    <br />
+    <simple-render class="comp-render" :config="configButton"></simple-render>
+    <br />
+    <simple-render class="comp-render" :config="configDate"></simple-render>
   </div>
 </template>
 
@@ -32,9 +36,10 @@ render 组件。
     methods: {},
   }
 </script>
-<style lang="scss" scoped>
+<style>
   .comp-render {
-    width: 300px;
+    width: 400px !important;
+    margin-bottom: 12px;
   }
 </style>
 ```
