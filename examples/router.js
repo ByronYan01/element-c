@@ -20,9 +20,24 @@ const routes = [
     component: (resolve) => require(['./docs/render.md'], resolve),
   },
   {
+    path: '/scroll',
+    name: 'scroll',
+    component: (resolve) => require(['./docs/scroll.md'], resolve),
+  },
+  {
     path: '/example',
     name: 'example',
     component: (resolve) => require(['./docs/example.md'], resolve),
+  },
+  {
+    path: '/rightLeftColumn',
+    name: 'rightLeftColumn',
+    component: (resolve) => require(['./demo/rightLeftColumn.vue'], resolve),
+  },
+  {
+    path: '/scrollDemo',
+    name: 'scrollDemo',
+    component: (resolve) => require(['./demo/scrollDemo.vue'], resolve),
   },
   {
     path: '/tableRowCheck',

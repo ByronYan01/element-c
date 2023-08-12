@@ -1,9 +1,10 @@
 import SimpleRender from '../packages/SimpleRender'
 import SimpleTable from '../packages/SimpleTable'
 import SimpleTableForm from '../packages/SimpleTableForm'
+import Scrollbar from '../packages/Scrollbar'
 
 // 导入组件库所有组件
-const components = [SimpleTable, SimpleRender, SimpleTableForm]
+const components = [SimpleTable, SimpleRender, SimpleTableForm, Scrollbar]
 
 // 定义组件库组件注册安装的install方法
 // 如果使用 use 注册插件，则所有的组件都将被注册
@@ -29,4 +30,5 @@ export default {
   SimpleTable,
   SimpleRender,
   SimpleTableForm,
+  Scrollbar,
 }
