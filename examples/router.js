@@ -45,6 +45,11 @@ const routes = [
     component: (resolve) => require(['./demo/test.vue'], resolve),
   },
   {
+    path: '/formItemTip',
+    name: 'formItemTip',
+    component: (resolve) => require(['./demo/formItemTip.vue'], resolve),
+  },
+  {
     path: '/tooltip-popper',
     name: 'tooltip-popper',
     component: (resolve) => require(['./demo/tooltip-popper.vue'], resolve),
