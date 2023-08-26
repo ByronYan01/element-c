@@ -1,0 +1,8 @@
+{
+  "table-form": "./packages/table-form/index.js",
+  "table": "./packages/table/index.js",
+  "render": "./packages/render/index.js",
+  "scroll": "./packages/scroll/index.js",
+  "form-item-tip": "./packages/form-item-tip/index.js",
+  "cascader": "./packages/cascader/index.js"
+}

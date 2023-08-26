@@ -4,19 +4,31 @@
       <el-table-column prop="date" label="日期" minWidth="100px"> </el-table-column>
       <el-table-column prop="name" label="姓名" minWidth="80px"> </el-table-column>
       <el-table-column prop="num" label="数量" minWidth="60px" align="right"> </el-table-column>
-      <el-table-column prop="num" label="单价" minWidth="60px" align="right"> </el-table-column>
+      <el-table-column prop="price" label="单价" minWidth="60px" align="right"> </el-table-column>
       <el-table-column prop="address" label="地址" minWidth="110px"> </el-table-column>
       <el-table-column prop="num" label="数字" minWidth="60px" align="right"> </el-table-column>
     </el-table>
     <div class="split-line">-----------</div>
+    <div class="split-line">伪元素</div>
     <!-- 居右列、居左列相邻无间隙不美观问题 -->
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="date" label="日期" minWidth="100px"> </el-table-column>
       <el-table-column prop="name" label="姓名" minWidth="80px"> </el-table-column>
       <el-table-column prop="num" label="数量" minWidth="60px" align="right" className="right-column"> </el-table-column>
-      <el-table-column prop="num" label="单价" minWidth="60px" align="right" className="right-column"> </el-table-column>
+      <el-table-column prop="price" label="单价" minWidth="60px" align="right" className="right-column"> </el-table-column>
       <el-table-column prop="address" label="地址" minWidth="110px"> </el-table-column>
       <el-table-column prop="num" label="数字" minWidth="60px" align="right" className="right-column last-right-column"> </el-table-column>
+    </el-table>
+    <div class="split-line">-----------</div>
+    <div class="split-line">padding</div>
+    <!-- 掘友提供的 -->
+    <el-table :data="tableData" style="width: 100%">
+      <el-table-column prop="date" label="日期" minWidth="100px"> </el-table-column>
+      <el-table-column prop="name" label="姓名" minWidth="80px"> </el-table-column>
+      <el-table-column prop="num" label="数量" minWidth="60px" align="right" className="right-column-pad"> </el-table-column>
+      <el-table-column prop="price" label="单价" minWidth="60px" align="right" className="right-column-pad"> </el-table-column>
+      <el-table-column prop="address" label="地址" minWidth="110px"> </el-table-column>
+      <el-table-column prop="num" label="数字" minWidth="60px" align="right" className="right-column-pad last-right-column-pad"> </el-table-column>
     </el-table>
   </div>
 </template>
@@ -96,6 +108,33 @@ export default {
 @each $maxWidth, $spacing, $content in (1800px, 40%, 60%), (1600px, 30%, 70%), (1450px, 20%, 80%), (1350px, 10%, 90%), (1260px, 0, 100%) {
   @media screen and (max-width: $maxWidth) {
     @include colRightMixin($spacing, $content);
+  }
+}
+
+@mixin colRightPadMixin($paddingRight) {
+  .right-column-pad.el-table__cell.is-right {
+    // 在居右列中占用部分宽度作为间隙使用
+    .cell {
+      padding-right: $paddingRight;
+    }
+    // 最后一个右列间隙宽度减少
+    &.last-right-column-pad {
+      .cell {
+        @if $paddingRight == 0 {
+          padding-right: $paddingRight;
+        } @else {
+          padding-right: $paddingRight - 10;
+        }
+        // min-width: 0;
+      }
+    }
+  }
+}
+
+@include colRightPadMixin(50%);
+@each $maxWidth, $paddingRight in (1800px, 40%), (1600px, 30%), (1450px, 20%), (1350px, 10%), (1260px, 0) {
+  @media screen and (max-width: $maxWidth) {
+    @include colRightPadMixin($paddingRight);
   }
 }
 </style>

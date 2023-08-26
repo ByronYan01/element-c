@@ -40,6 +40,16 @@ const routes = [
     component: (resolve) => require(['./demo/scrollDemo.vue'], resolve),
   },
   {
+    path: '/test',
+    name: 'test',
+    component: (resolve) => require(['./demo/test.vue'], resolve),
+  },
+  {
+    path: '/tooltip-popper',
+    name: 'tooltip-popper',
+    component: (resolve) => require(['./demo/tooltip-popper.vue'], resolve),
+  },
+  {
     path: '/tableRowCheck',
     name: 'tableRowCheck',
     // component: (resolve) => require(['./components/tableRowCheck.vue'], resolve),

@@ -9,8 +9,8 @@
   </div>
 </template>
 <script>
-import SimpleTable from 'packages/SimpleTable'
-import SimpleRender from 'packages/SimpleRender'
+import SimpleTable from 'packages/table'
+import SimpleRender from 'packages/render'
 export default {
   name: 'SimpleTableForm',
   components: {
