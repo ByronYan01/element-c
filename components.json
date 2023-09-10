@@ -4,5 +4,8 @@
   "render": "./packages/render/index.js",
   "scroll": "./packages/scroll/index.js",
   "form-item-tip": "./packages/form-item-tip/index.js",
-  "cascader": "./packages/cascader/index.js"
+  "cascader": "./packages/cascader/index.js",
+  "pic-upload": "./packages/pic-upload/index.js",
+  "source-table": "./packages/source-table/index.js",
+  "source-table-column": "./packages/source-table-column/index.js"
 }

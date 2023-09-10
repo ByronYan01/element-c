@@ -1,7 +1,8 @@
 <template>
   <div id="app" class="is-component">
     <div class="main-cnt">
-      <home></home>
+      <router-view v-if="this.$route.meta?.fullPage" class="content"></router-view>
+      <home v-else></home>
     </div>
   </div>
 </template>

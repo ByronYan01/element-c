@@ -6,8 +6,11 @@ import Render from '../packages/render/index.js'
 import Scroll from '../packages/scroll/index.js'
 import FormItemTip from '../packages/form-item-tip/index.js'
 import Cascader from '../packages/cascader/index.js'
+import PicUpload from '../packages/pic-upload/index.js'
+import SourceTable from '../packages/source-table/index.js'
+import SourceTableColumn from '../packages/source-table-column/index.js'
 // 导入组件库所有组件
-const components = [TableForm, Table, Render, Scroll, FormItemTip, Cascader]
+const components = [TableForm, Table, Render, Scroll, FormItemTip, Cascader, PicUpload, SourceTable, SourceTableColumn]
 
 // 定义组件库组件注册安装的install方法
 // 如果使用 use 注册插件，则所有的组件都将被注册
@@ -36,4 +39,7 @@ export default {
   Scroll,
   FormItemTip,
   Cascader,
+  PicUpload,
+  SourceTable,
+  SourceTableColumn,
 }

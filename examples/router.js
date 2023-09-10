@@ -50,6 +50,14 @@ const routes = [
     component: (resolve) => require(['./demo/formItemTip.vue'], resolve),
   },
   {
+    path: '/picUpload',
+    name: 'picUpload',
+    component: (resolve) => require(['./demo/picUpload.vue'], resolve),
+    meta: {
+      fullPage: true,
+    },
+  },
+  {
     path: '/tooltip-popper',
     name: 'tooltip-popper',
     component: (resolve) => require(['./demo/tooltip-popper.vue'], resolve),
