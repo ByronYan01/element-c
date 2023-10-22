@@ -45,6 +45,29 @@ const routes = [
     component: (resolve) => require(['./demo/test.vue'], resolve),
   },
   {
+    path: '/fileManage',
+    name: 'fileManage',
+    component: (resolve) => require(['./demo/fileManage/index.vue'], resolve),
+    meta: {
+      fullPage: true,
+    },
+  },
+  {
+    path: '/resouce-upload-array',
+    name: 'dropFoderFile',
+    component: (resolve) => require(['./demo/fileManage/resouce-upload-array.vue'], resolve),
+  },
+  {
+    path: '/resouce-upload-tree',
+    name: 'dropFoderFile',
+    component: (resolve) => require(['./demo/fileManage/resouce-upload-tree.vue'], resolve),
+  },
+  {
+    path: '/dropFoderFile',
+    name: 'dropFoderFile',
+    component: (resolve) => require(['./demo/dropFoderFile.vue'], resolve),
+  },
+  {
     path: '/formItemTip',
     name: 'formItemTip',
     component: (resolve) => require(['./demo/formItemTip.vue'], resolve),
